@@ -45,3 +45,4 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'bootstrap-sass', '3.1.1.0'
+gem 'rabl', '0.9.3'
