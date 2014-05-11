@@ -12,4 +12,9 @@ class ApplicationController < ActionController::Base
     env['warden'].authenticated?
   end
   helper_method :signed_in?
+
+  def admin?
+    current_user && current_user.admin?
+  end
+  helper_method :admin?
 end

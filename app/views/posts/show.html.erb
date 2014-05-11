@@ -1,6 +1,6 @@
 <h2><%= @post.title %></h2>
 
-<% if current_user.admin? %>
+<% if admin? %>
   <%= link_to 'Edit Post', edit_post_path(@post) %> |
   <%= link_to 'Delete Post', post_path(@post), method: :delete %>
 <% end %>

@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :admin_only, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @posts = Post.all
@@ -48,5 +49,12 @@ class PostsController < ApplicationController
 
     def post_params
       params.require(:post).permit(:title, :text)
+    end
+
+    def admin_only
+      unless admin?
+        flash[:error] = "You are not authorized to perform that action."
+        redirect_to root_path
+      end
     end
 end
