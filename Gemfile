@@ -1,12 +1,19 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.5'
+gem 'rails'
 gem 'sqlite3'
+gem 'subscribem', path: '../subscribem'
 
 gem 'sass-rails', '~> 4.0.2'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
+
+group :development, :test do
+  gem 'rspec-rails', '3.0.1'
+  gem 'capybara', '2.3.0'
+  gem "factory_girl", "4.4.0"
+end
 
 group :doc do
 

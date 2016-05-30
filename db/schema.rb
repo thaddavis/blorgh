@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140511053448) do
+ActiveRecord::Schema.define(version: 20160529230552) do
 
-  create_table "comments", force: true do |t|
+  create_table "comments", force: :cascade do |t|
     t.string   "username"
     t.string   "text"
     t.integer  "post_id"
@@ -21,14 +21,41 @@ ActiveRecord::Schema.define(version: 20140511053448) do
     t.datetime "updated_at"
   end
 
-  create_table "posts", force: true do |t|
+  create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "account_id"
   end
 
-  create_table "users", force: true do |t|
+  add_index "posts", ["account_id"], name: "index_posts_on_account_id"
+
+  create_table "subscribem_accounts", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "owner_id"
+    t.string   "subdomain"
+  end
+
+  add_index "subscribem_accounts", ["subdomain"], name: "index_subscribem_accounts_on_subdomain"
+
+  create_table "subscribem_members", force: :cascade do |t|
+    t.integer  "account_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subscribem_users", force: :cascade do |t|
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "password_digest"
     t.boolean  "admin",           default: false
