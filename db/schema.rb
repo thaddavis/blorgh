@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160529230552) do
+ActiveRecord::Schema.define(version: 20160530173002) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "username"
@@ -46,6 +46,14 @@ ActiveRecord::Schema.define(version: 20160529230552) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "subscribem_plans", force: :cascade do |t|
+    t.string   "name"
+    t.float    "price"
+    t.string   "braintree_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "subscribem_users", force: :cascade do |t|
